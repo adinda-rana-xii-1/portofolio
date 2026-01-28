@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chata Knitting Store - Toko Rajut Premium</title>
+  <meta name="description" content="Toko rajut premium dengan koleksi handmade berkualitas tinggi. Sweater, cardigan, dan aksesoris rajut untuk gaya hidup modern.">
+  <meta name="keywords" content="toko rajut, sweater rajut, cardigan, handmade, knitting, fashion">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #2d2d2d !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #ffffff !important;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #cccccc !important;
+        }
+        
+        .dark-mode .border-gray-200 {
+            border-color: #404040 !important;
+        }
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-carousel {
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="font-sans"><!-- Header/Navbar -->
+  <header class="bg-white shadow-lg fixed w-full top-0 z-50 transition-all duration-300">
+   <nav class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+     <div class="flex items-center space-x-4">
+      <h1 class="text-2xl font-bold gradient-text" id="store-name">Chata Knitting Store</h1>
+     </div>
+     <div class="hidden md:flex items-center space-x-6"><a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors">Beranda</a> <a href="#products" class="text-gray-700 hover:text-purple-600 transition-colors">Produk</a> <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors">Tentang</a> <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Kontak</a> <a href="#faq" class="text-gray-700 hover:text-purple-600 transition-colors">FAQ</a>
+     </div>
+     <div class="flex items-center space-x-4"><!-- Language Switcher --> <select id="language-switcher" class="bg-transparent border border-gray-300 rounded px-2 py-1 text-sm"> <option value="id">🇮🇩 ID</option> <option value="en">🇺🇸 EN</option> </select> <!-- Dark Mode Toggle --> <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors"> <i class="fas fa-moon text-gray-600"></i> </button> <!-- Search Bar -->
+      <div class="relative"><input type="text" id="search-input" placeholder="Cari produk..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500"> <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+      </div><!-- Cart --> <button id="cart-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition-colors"> <i class="fas fa-shopping-cart text-gray-600"></i> <span id="cart-count" class="cart-badge">0</span> </button> <!-- Mobile Menu --> <button id="mobile-menu-btn" class="md:hidden p-2"> <i class="fas fa-bars text-gray-600"></i> </button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4"><a href="#home" class="block py-2 text-gray-700 hover:text-purple-600">Beranda</a> <a href="#products" class="block py-2 text-gray-700 hover:text-purple-600">Produk</a> <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600">Tentang</a> <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600">Kontak</a> <a href="#faq" class="block py-2 text-gray-700 hover:text-purple-600">FAQ</a>
+    </div>
+   </nav>
+  </header><!-- Hero Section -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center parallax-bg" style="background-image: linear-gradient(rgba(139, 92, 246, 0.7), rgba(6, 182, 212, 0.7)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><defs><pattern id=%22knit%22 patternUnits=%22userSpaceOnUse%22 width=%2240%22 height=%2240%22><circle cx=%2220%22 cy=%2220%22 r=%223%22 fill=%22%23ffffff%22 opacity=%220.1%22/></pattern></defs><rect width=%221200%22 height=%22800%22 fill=%22url(%23knit)%22/></svg>');">
+   <div class="container mx-auto px-4 text-center text-white">
+    <div class="fade-in">
+     <h2 id="hero-title" class="text-5xl md:text-7xl font-bold mb-6 floating">Koleksi Rajutan Premium</h2>
+     <p id="hero-subtitle" class="text-xl md:text-2xl mb-8 opacity-90">Handmade dengan cinta untuk gaya hidup Anda</p>
+     <div class="space-x-4"><button onclick="scrollToSection('products')" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"> Lihat Koleksi </button> <button onclick="scrollToSection('contact')" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors"> Hubungi Kami </button>
+     </div>
+    </div>
+   </div><!-- Promo Banner -->
+   <div class="absolute top-20 left-0 right-0 bg-red-500 text-white text-center py-2 animate-pulse">
+    <p id="promo-text">🎉 Diskon 20% untuk pembelian pertama! Gunakan kode: WELCOME11</p>
+   </div>
+  </section><!-- Statistics Counter -->
+  <section class="py-16 bg-gray-50">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+     <div class="fade-in">
+      <div class="text-4xl font-bold text-purple-600" data-counter="500">
+       0
+      </div>
+      <p class="text-gray-600 mt-2">Produk Terjual</p>
+     </div>
+     <div class="fade-in">
+      <div class="text-4xl font-bold text-purple-600" data-counter="150">
+       0
+      </div>
+      <p class="text-gray-600 mt-2">Pelanggan Puas</p>
+     </div>
+     <div class="fade-in">
+      <div class="text-4xl font-bold text-purple-600" data-counter="50">
+       0
+      </div>
+      <p class="text-gray-600 mt-2">Desain Unik</p>
+     </div>
+     <div class="fade-in">
+      <div class="text-4xl font-bold text-purple-600" data-counter="3">
+       0
+      </div>
+      <p class="text-gray-600 mt-2">Tahun Pengalaman</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Products Section -->
+  <section id="products" class="py-20 bg-white">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Koleksi Produk Kami</h2>
+     <p class="text-gray-600 max-w-2xl mx-auto">Temukan berbagai macam produk rajutan berkualitas tinggi yang dibuat dengan penuh perhatian dan detail</p>
+    </div><!-- Product Filters -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12"><button class="filter-btn active bg-purple-600 text-white px-6 py-2 rounded-full" data-filter="all">Semua</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-purple-600 hover:text-white transition-colors" data-filter="sweater">Sweater</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-purple-600 hover:text-white transition-colors" data-filter="cardigan">Cardigan</button> <button class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-purple-600 hover:text-white transition-colors" data-filter="accessories">Aksesoris</button>
+    </div><!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"><!-- Products will be loaded here -->
+    </div>
+   </div>
+  </section><!-- Testimonials Carousel -->
+  <section class="py-20 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold mb-4">Apa Kata Pelanggan Kami</h2>
+     <p class="text-purple-100 max-w-2xl mx-auto">Testimoni dari pelanggan yang puas dengan produk rajutan kami</p>
+    </div>
+    <div class="testimonial-carousel relative max-w-4xl mx-auto">
+     <div id="testimonial-container" class="flex transition-transform duration-500"><!-- Testimonials will be loaded here -->
+     </div><button id="prev-testimonial" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-3 transition-colors"> <i class="fas fa-chevron-left"></i> </button> <button id="next-testimonial" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-3 transition-colors"> <i class="fas fa-chevron-right"></i> </button>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" class="py-20 bg-gray-50">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+     <div class="fade-in">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6">Tentang Chata Knitting Store</h2>
+      <p class="text-gray-600 mb-6 leading-relaxed">Kami adalah toko rajut yang berdedikasi untuk menghadirkan produk-produk rajutan berkualitas tinggi dengan desain yang modern dan elegan. Setiap produk dibuat dengan tangan oleh pengrajin berpengalaman.</p>
+      <p class="text-gray-600 mb-8 leading-relaxed">Dengan pengalaman lebih dari 3 tahun, kami telah melayani ratusan pelanggan di seluruh Indonesia dengan komitmen kualitas dan kepuasan pelanggan yang tinggi.</p><!-- Contact Info -->
+      <div class="space-y-4">
+       <div class="flex items-center space-x-3"><i class="fas fa-user text-purple-600"></i> <span class="text-gray-700">Adinda Rana</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-map-marker-alt text-purple-600"></i> <span class="text-gray-700">Subang, Indonesia</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fas fa-phone text-purple-600"></i> <span class="text-gray-700">085282836</span>
+       </div>
+       <div class="flex items-center space-x-3"><i class="fab fa-instagram text-purple-600"></i> <span class="text-gray-700">@adindaarana</span>
+       </div>
+      </div>
+     </div>
+     <div class="fade-in"><!-- Map Integration -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+       <h3 class="text-xl font-semibold mb-4">Lokasi Kami</h3>
+       <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+        <div class="text-center text-gray-500"><i class="fas fa-map-marked-alt text-4xl mb-2"></i>
+         <p>Peta Lokasi Subang, Indonesia</p>
+         <p class="text-sm mt-2">https://share.google/ady6W3IJirVoT5nuL</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-white">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+     <p class="text-gray-600 max-w-2xl mx-auto">Pertanyaan yang sering diajukan tentang produk dan layanan kami</p>
+    </div>
+    <div class="max-w-3xl mx-auto">
+     <div class="space-y-4">
+      <div class="faq-item bg-gray-50 rounded-lg"><button class="faq-question w-full text-left p-6 font-semibold text-gray-800 hover:text-purple-600 transition-colors flex justify-between items-center"> Berapa lama waktu pembuatan produk custom? <i class="fas fa-chevron-down transform transition-transform"></i> </button>
+       <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+        Waktu pembuatan produk custom biasanya memakan waktu 7-14 hari kerja, tergantung pada kompleksitas desain dan ketersediaan bahan.
+       </div>
+      </div>
+      <div class="faq-item bg-gray-50 rounded-lg"><button class="faq-question w-full text-left p-6 font-semibold text-gray-800 hover:text-purple-600 transition-colors flex justify-between items-center"> Apakah ada garansi untuk produk yang dibeli? <i class="fas fa-chevron-down transform transition-transform"></i> </button>
+       <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+        Ya, kami memberikan garansi 30 hari untuk semua produk. Jika ada kerusakan atau cacat produksi, kami akan mengganti atau memperbaiki produk tersebut.
+       </div>
+      </div>
+      <div class="faq-item bg-gray-50 rounded-lg"><button class="faq-question w-full text-left p-6 font-semibold text-gray-800 hover:text-purple-600 transition-colors flex justify-between items-center"> Bagaimana cara perawatan produk rajut? <i class="fas fa-chevron-down transform transition-transform"></i> </button>
+       <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+        Cuci dengan tangan menggunakan air dingin dan deterjen lembut. Jangan diperas, cukup tekan perlahan untuk mengeluarkan air berlebih. Keringkan dengan cara direbahkan di permukaan datar.
+       </div>
+      </div>
+      <div class="faq-item bg-gray-50 rounded-lg"><button class="faq-question w-full text-left p-6 font-semibold text-gray-800 hover:text-purple-600 transition-colors flex justify-between items-center"> Apakah tersedia pengiriman ke seluruh Indonesia? <i class="fas fa-chevron-down transform transition-transform"></i> </button>
+       <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+        Ya, kami melayani pengiriman ke seluruh Indonesia melalui berbagai ekspedisi terpercaya seperti JNE, J&amp;T, dan SiCepat.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Form -->
+  <section id="contact" class="py-20 bg-gray-50">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+     <h2 class="text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+     <p class="text-gray-600 max-w-2xl mx-auto">Punya pertanyaan atau ingin memesan produk custom? Jangan ragu untuk menghubungi kami</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+     <div class="fade-in">
+      <form id="contact-form" class="bg-white rounded-lg shadow-lg p-8">
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div><label for="contact-name" class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+        <div><label for="contact-email" class="block text-gray-700 font-semibold mb-2">Email</label> <input type="email" id="contact-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+       </div>
+       <div class="mb-6"><label for="contact-phone" class="block text-gray-700 font-semibold mb-2">Nomor Telepon</label> <input type="tel" id="contact-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+       </div>
+       <div class="mb-6"><label for="contact-message" class="block text-gray-700 font-semibold mb-2">Pesan</label> <textarea id="contact-message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+       </div><button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"> Kirim Pesan </button>
+      </form>
+     </div>
+     <div class="fade-in">
+      <div class="bg-white rounded-lg shadow-lg p-8">
+       <h3 class="text-2xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
+       <div class="space-y-6">
+        <div class="flex items-start space-x-4">
+         <div class="bg-purple-100 p-3 rounded-full"><i class="fas fa-user text-purple-600"></i>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800">Pemilik Toko</h4>
+          <p class="text-gray-600">Adinda Rana</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4">
+         <div class="bg-purple-100 p-3 rounded-full"><i class="fas fa-map-marker-alt text-purple-600"></i>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800">Alamat</h4>
+          <p class="text-gray-600">Subang, Indonesia</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4">
+         <div class="bg-purple-100 p-3 rounded-full"><i class="fas fa-phone text-purple-600"></i>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800">Telepon</h4>
+          <p class="text-gray-600">085282836</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4">
+         <div class="bg-purple-100 p-3 rounded-full"><i class="fab fa-instagram text-purple-600"></i>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800">Instagram</h4>
+          <p class="text-gray-600">@adindaarana</p>
+         </div>
+        </div>
+       </div><!-- Social Media Share -->
+       <div class="mt-8 pt-8 border-t border-gray-200">
+        <h4 class="font-semibold text-gray-800 mb-4">Bagikan Toko Kami</h4>
+        <div class="flex space-x-4"><button onclick="shareToSocial('facebook')" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors"> <i class="fab fa-facebook-f"></i> </button> <button onclick="shareToSocial('twitter')" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors"> <i class="fab fa-twitter"></i> </button> <button onclick="shareToSocial('whatsapp')" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp"></i> </button> <button onclick="shareToSocial('telegram')" class="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-colors"> <i class="fab fa-telegram"></i> </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Rating & Feedback Form -->
+  <section class="py-20 bg-white">
+   <div class="container mx-auto px-4">
+    <div class="max-w-2xl mx-auto">
+     <div class="text-center mb-12 fade-in">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Berikan Penilaian Anda</h2>
+      <p class="text-gray-600">Feedback Anda sangat berharga untuk meningkatkan kualitas layanan kami</p>
+     </div>
+     <form id="rating-form" class="bg-gray-50 rounded-lg p-8">
+      <div class="mb-6"><label class="block text-gray-700 font-semibold mb-4">Rating Keseluruhan</label>
+       <div class="flex justify-center space-x-2 mb-4"><button type="button" class="star-rating text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="1">★</button> <button type="button" class="star-rating text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="2">★</button> <button type="button" class="star-rating text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="3">★</button> <button type="button" class="star-rating text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="4">★</button> <button type="button" class="star-rating text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="5">★</button>
+       </div><input type="hidden" id="rating-value" value="0">
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+       <div><label for="rating-name" class="block text-gray-700 font-semibold mb-2">Nama</label> <input type="text" id="rating-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+       </div>
+       <div><label for="rating-email" class="block text-gray-700 font-semibold mb-2">Email</label> <input type="email" id="rating-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+       </div>
+      </div>
+      <div class="mb-6"><label for="rating-message" class="block text-gray-700 font-semibold mb-2">Saran &amp; Penilaian</label> <textarea id="rating-message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Bagikan pengalaman Anda dengan produk dan layanan kami..."></textarea>
+      </div><button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"> Kirim Penilaian </button>
+     </form>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-800 text-white py-16">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+     <div>
+      <h3 class="text-2xl font-bold mb-4 gradient-text">Chart Knitting Store</h3>
+      <p class="text-gray-300 mb-4">Toko rajut premium dengan kualitas terbaik dan desain yang elegan untuk gaya hidup modern Anda.</p>
+      <div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-facebook-f"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-instagram"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-whatsapp"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Navigasi</h4>
+      <ul class="space-y-2">
+       <li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+       <li><a href="#products" class="text-gray-300 hover:text-white transition-colors">Produk</a></li>
+       <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">Tentang</a></li>
+       <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Kontak</a></li>
+       <li><a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Kategori Produk</h4>
+      <ul class="space-y-2">
+       <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Sweater</a></li>
+       <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Cardigan</a></li>
+       <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Aksesoris</a></li>
+       <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Custom Order</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">Kontak Info</h4>
+      <div class="space-y-2 text-gray-300">
+       <p><i class="fas fa-user mr-2"></i>Adinda Rana</p>
+       <p><i class="fas fa-map-marker-alt mr-2"></i>Subang, Indonesia</p>
+       <p><i class="fas fa-phone mr-2"></i>085282836</p>
+       <p><i class="fab fa-instagram mr-2"></i>@adindaarana</p>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+     <p class="text-gray-300">© 2024 Chart Knitting Store. All rights reserved. Made with ❤️ for knitting lovers.</p>
+    </div>
+   </div>
+  </footer><!-- Shopping Cart Sidebar -->
+  <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+   <div class="p-6 border-b border-gray-200">
+    <div class="flex justify-between items-center">
+     <h3 class="text-xl font-bold">Keranjang Belanja</h3><button id="close-cart" class="text-gray-500 hover:text-gray-700"> <i class="fas fa-times text-xl"></i> </button>
+    </div>
+   </div>
+   <div id="cart-items" class="flex-1 overflow-y-auto p-6"><!-- Cart items will be loaded here -->
+   </div>
+   <div class="border-t border-gray-200 p-6">
+    <div class="flex justify-between items-center mb-4"><span class="text-lg font-semibold">Total:</span> <span id="cart-total" class="text-xl font-bold text-purple-600">Rp 0</span>
+    </div><button id="checkout-btn" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"> Checkout </button>
+   </div>
+  </div><!-- Chatbot -->
+  <div class="chatbot"><button id="chatbot-toggle" class="bg-purple-600 text-white p-4 rounded-full shadow-lg hover:bg-purple-700 transition-colors"> <i class="fas fa-comments text-xl"></i> </button>
+   <div id="chatbot-window" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-2xl border border-gray-200">
+    <div class="bg-purple-600 text-white p-4 rounded-t-lg">
+     <div class="flex justify-between items-center">
+      <h4 class="font-semibold">Chat Assistant</h4><button id="close-chatbot" class="text-white hover:text-gray-200"> <i class="fas fa-times"></i> </button>
+     </div>
+    </div>
+    <div id="chat-messages" class="h-64 overflow-y-auto p-4 space-y-3">
+     <div class="bg-gray-100 p-3 rounded-lg">
+      <p class="text-sm">Halo! Selamat datang di Chart Knitting Store. Ada yang bisa saya bantu?</p>
+     </div>
+    </div>
+    <div class="p-4 border-t border-gray-200">
+     <div class="flex space-x-2"><input type="text" id="chat-input" placeholder="Ketik pesan..." class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"> <button id="send-chat" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"> <i class="fas fa-paper-plane"></i> </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- Loading Overlay -->
+  <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+   <div class="bg-white p-8 rounded-lg text-center">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+    <p class="text-gray-600">Memproses...</p>
+   </div>
+  </div>
+  <script>
+        // Global variables
+        let currentLanguage = 'id';
+        let isDarkMode = false;
+        let cart = [];
+        let products = [];
+        let testimonials = [];
+        let currentTestimonial = 0;
+        let currentRecordCount = 0;
+
+        // Default configuration
+        const defaultConfig = {
+            store_name: "Chata Knitting Store",
+            hero_title: "Koleksi Rajutan Premium",
+            hero_subtitle: "Handmade dengan cinta untuk gaya hidup Anda",
+            promo_text: "🎉 Diskon 20% untuk pembelian pertama! Gunakan kode: WELCOME11",
+            background_color: "#f8fafc",
+            surface_color: "#ffffff",
+            text_color: "#1f2937",
+            primary_action_color: "#8b5cf6",
+            secondary_action_color: "#06b6d4",
+            font_family: "Inter",
+            font_size: 16
+        };
+
+        // Sample products data
+        const sampleProducts = [
+            {
+                id: 'sweater-1',
+                name: 'Sweater Rajut Premium',
+                category: 'sweater',
+                price: 250000,
+                image: 'https://ae01.alicdn.com/kf/Se154ef4d2b65480ea0f6a04f7665bd97x.jpg',
+
+                description: 'Sweater rajut premium dengan bahan berkualitas tinggi'
+            },
+            {
+                id: 'cardigan-1',
+                name: 'Cardigan Elegan',
+                category: 'cardigan',
+                price: 300000,
+                image: 'https://media.karousell.com/media/photos/products/2022/10/25/cardigan_putih_tebal_ala_korea_1666709090_9acda27a.jpg', 
+                description: 'Cardigan elegan untuk tampilan kasual yang stylish'
+            },
+            {
+                id: 'accessories-1',
+                name: 'Topi Rajut Hangat',
+                category: 'accessories',
+                price: 75000,
+                image: 'https://down-id.img.susercontent.com/file/id-11134207-7qula-lgjitzor34ad32',
+                description: 'Topi rajut hangat untuk musim dingin'
+            },
+            {
+                id: 'sweater-2',
+                name: 'Sweater Motif Unik',
+                category: 'sweater',
+                price: 280000,
+                image: 'https://ae01.alicdn.com/kf/Sbbaabc8cf7ee4a7fb318c1fbbf0ff05ef.jpg',
+                description: 'Sweater dengan motif unik dan warna menarik'
+            }
+        ];
+
+        // Sample testimonials
+        const sampleTestimonials = [
+            {
+                name: 'Sarah Putri',
+                rating: 5,
+                message: 'Kualitas rajutan sangat bagus dan nyaman dipakai. Pelayanan juga ramah dan cepat!',
+                avatar: '👩'
+            },
+            {
+                name: 'Budi Santoso',
+                rating: 5,
+                message: 'Sweater yang saya pesan sesuai dengan ekspektasi. Bahan berkualitas dan jahitan rapi.',
+                avatar: '👨'
+            },
+            {
+                name: 'Maya Sari',
+                rating: 4,
+                message: 'Cardigan yang cantik dan hangat. Cocok untuk cuaca dingin. Recommended!',
+                avatar: '👩‍🦱'
+            }
+        ];
+
+        // Translations
+        const translations = {
+            id: {
+                home: 'Beranda',
+                products: 'Produk',
+                about: 'Tentang',
+                contact: 'Kontak',
+                faq: 'FAQ',
+                search_placeholder: 'Cari produk...',
+                add_to_cart: 'Tambah ke Keranjang',
+                buy_now: 'Beli Sekarang',
+                cart_empty: 'Keranjang kosong',
+                total: 'Total',
+                checkout: 'Checkout'
+            },
+            en: {
+                home: 'Home',
+                products: 'Products',
+                about: 'About',
+                contact: 'Contact',
+                faq: 'FAQ',
+                search_placeholder: 'Search products...',
+                add_to_cart: 'Add to Cart',
+                buy_now: 'Buy Now',
+                cart_empty: 'Cart is empty',
+                total: 'Total',
+                checkout: 'Checkout'
+            }
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                
+                // Update UI based on data type
+                data.forEach(record => {
+                    if (record.type === 'contact') {
+                        // Handle contact form submissions
+                        console.log('Contact form submitted:', record);
+                    } else if (record.type === 'rating') {
+                        // Handle rating submissions
+                        console.log('Rating submitted:', record);
+                    } else if (record.type === 'cart_item') {
+                        // Handle cart items
+                        updateCartFromData(data.filter(item => item.type === 'cart_item'));
+                    }
+                });
+            }
+        };
+
+        // Initialize application
+        async function initApp() {
+            // Initialize Data SDK
+            if (window.dataSdk) {
+                const initResult = await window.dataSdk.init(dataHandler);
+                if (!initResult.isOk) {
+                    console.error('Failed to initialize Data SDK');
+                }
+            }
+
+            // Initialize Element SDK
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (config) => {
+                        // Update store name
+                        const storeNameEl = document.getElementById('store-name');
+                        if (storeNameEl) {
+                            storeNameEl.textContent = config.store_name || defaultConfig.store_name;
+                        }
+
+                        // Update hero section
+                        const heroTitleEl = document.getElementById('hero-title');
+                        if (heroTitleEl) {
+                            heroTitleEl.textContent = config.hero_title || defaultConfig.hero_title;
+                        }
+
+                        const heroSubtitleEl = document.getElementById('hero-subtitle');
+                        if (heroSubtitleEl) {
+                            heroSubtitleEl.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+                        }
+
+                        // Update promo text
+                        const promoTextEl = document.getElementById('promo-text');
+                        if (promoTextEl) {
+                            promoTextEl.textContent = config.promo_text || defaultConfig.promo_text;
+                        }
+
+                        // Apply colors
+                        const backgroundColor = config.background_color || defaultConfig.background_color;
+                        const surfaceColor = config.surface_color || defaultConfig.surface_color;
+                        const textColor = config.text_color || defaultConfig.text_color;
+                        const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+                        const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+                        document.body.style.backgroundColor = backgroundColor;
+                        
+                        // Update surface colors
+                        const surfaceElements = document.querySelectorAll('.bg-white, .bg-gray-50');
+                        surfaceElements.forEach(el => {
+                            el.style.backgroundColor = surfaceColor;
+                        });
+
+                        // Update text colors
+                        const textElements = document.querySelectorAll('.text-gray-800, .text-gray-700');
+                        textElements.forEach(el => {
+                            el.style.color = textColor;
+                        });
+
+                        // Update primary action colors
+                        const primaryElements = document.querySelectorAll('.bg-purple-600, .text-purple-600');
+                        primaryElements.forEach(el => {
+                            if (el.classList.contains('bg-purple-600')) {
+                                el.style.backgroundColor = primaryActionColor;
+                            } else {
+                                el.style.color = primaryActionColor;
+                            }
+                        });
+
+                        // Update secondary action colors
+                        const secondaryElements = document.querySelectorAll('.bg-blue-500, .text-blue-500');
+                        secondaryElements.forEach(el => {
+                            if (el.classList.contains('bg-blue-500')) {
+                                el.style.backgroundColor = secondaryActionColor;
+                            } else {
+                                el.style.color = secondaryActionColor;
+                            }
+                        });
+
+                        // Apply font
+                        const customFont = config.font_family || defaultConfig.font_family;
+                        const baseFontStack = 'system-ui, -apple-system, sans-serif';
+                        document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+
+                        // Apply font size
+                        const baseSize = config.font_size || defaultConfig.font_size;
+                        document.documentElement.style.fontSize = `${baseSize}px`;
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [
+                            {
+                                get: () => config.background_color || defaultConfig.background_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ background_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.surface_color || defaultConfig.surface_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ surface_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.text_color || defaultConfig.text_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ text_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ primary_action_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ secondary_action_color: value });
+                                    }
+                                }
+                            }
+                        ],
+                        borderables: [],
+                        fontEditable: {
+                            get: () => config.font_family || defaultConfig.font_family,
+                            set: (value) => {
+                                if (window.elementSdk) {
+                                    window.elementSdk.setConfig({ font_family: value });
+                                }
+                            }
+                        },
+                        fontSizeable: {
+                            get: () => config.font_size || defaultConfig.font_size,
+                            set: (value) => {
+                                if (window.elementSdk) {
+                                    window.elementSdk.setConfig({ font_size: value });
+                                }
+                            }
+                        }
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ['store_name', config.store_name || defaultConfig.store_name],
+                        ['hero_title', config.hero_title || defaultConfig.hero_title],
+                        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+                        ['promo_text', config.promo_text || defaultConfig.promo_text]
+                    ])
+                });
+            }
+
+            // Initialize products and testimonials
+            products = [...sampleProducts];
+            testimonials = [...sampleTestimonials];
+
+            // Load initial content
+            loadProducts();
+            loadTestimonials();
+            setupEventListeners();
+            setupAnimations();
+            setupCounters();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', toggleDarkMode);
+            }
+
+            // Language switcher
+            const languageSwitcher = document.getElementById('language-switcher');
+            if (languageSwitcher) {
+                languageSwitcher.addEventListener('change', (e) => {
+                    switchLanguage(e.target.value);
+                });
+            }
+
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchProducts(e.target.value);
+                });
+            }
+
+            // Cart functionality
+            const cartBtn = document.getElementById('cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCart = document.getElementById('close-cart');
+            
+            if (cartBtn && cartSidebar) {
+                cartBtn.addEventListener('click', () => {
+                    cartSidebar.classList.remove('translate-x-full');
+                });
+            }
+            
+            if (closeCart && cartSidebar) {
+                closeCart.addEventListener('click', () => {
+                    cartSidebar.classList.add('translate-x-full');
+                });
+            }
+
+            // Product filters
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Update active filter
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-purple-600', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    
+                    e.target.classList.add('active', 'bg-purple-600', 'text-white');
+                    e.target.classList.remove('bg-gray-200', 'text-gray-700');
+                    
+                    filterProducts(e.target.dataset.filter);
+                });
+            });
+
+            // FAQ accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Contact form
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleContactForm);
+            }
+
+            // Rating form
+            const ratingForm = document.getElementById('rating-form');
+            if (ratingForm) {
+                ratingForm.addEventListener('submit', handleRatingForm);
+            }
+
+            // Star rating
+            const starRatings = document.querySelectorAll('.star-rating');
+            starRatings.forEach(star => {
+                star.addEventListener('click', (e) => {
+                    const rating = parseInt(e.target.dataset.rating);
+                    updateStarRating(rating);
+                });
+            });
+
+            // Testimonial carousel
+            const prevBtn = document.getElementById('prev-testimonial');
+            const nextBtn = document.getElementById('next-testimonial');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentTestimonial = currentTestimonial > 0 ? currentTestimonial - 1 : testimonials.length - 1;
+                    updateTestimonialCarousel();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentTestimonial = currentTestimonial < testimonials.length - 1 ? currentTestimonial + 1 : 0;
+                    updateTestimonialCarousel();
+                });
+            }
+
+            // Chatbot
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const closeChatbot = document.getElementById('close-chatbot');
+            const sendChat = document.getElementById('send-chat');
+            const chatInput = document.getElementById('chat-input');
+            
+            if (chatbotToggle && chatbotWindow) {
+                chatbotToggle.addEventListener('click', () => {
+                    chatbotWindow.classList.toggle('hidden');
+                });
+            }
+            
+            if (closeChatbot && chatbotWindow) {
+                closeChatbot.addEventListener('click', () => {
+                    chatbotWindow.classList.add('hidden');
+                });
+            }
+            
+            if (sendChat && chatInput) {
+                sendChat.addEventListener('click', sendChatMessage);
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChatMessage();
+                    }
+                });
+            }
+
+            // Checkout button
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', handleCheckout);
+            }
+        }
+
+        // Load products
+        function loadProducts() {
+            const productGrid = document.getElementById('product-grid');
+            if (!productGrid) return;
+
+            productGrid.innerHTML = products.map(product => `
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden fade-in" data-category="${product.category}">
+                    <div class="aspect-square bg-gray-100 flex items-center justify-center">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 mb-4">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-purple-600">Rp ${product.price.toLocaleString('id-ID')}</span>
+                            <div class="space-x-2">
+                                <button onclick="addToCart('${product.id}')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                                    <i class="fas fa-cart-plus mr-1"></i>
+                                    ${translations[currentLanguage].add_to_cart}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load testimonials
+        function loadTestimonials() {
+            const testimonialContainer = document.getElementById('testimonial-container');
+            if (!testimonialContainer) return;
+
+            testimonialContainer.innerHTML = testimonials.map(testimonial => `
+                <div class="testimonial-slide bg-white bg-opacity-10 rounded-lg p-8 text-center">
+                    <div class="text-6xl mb-4">${testimonial.avatar}</div>
+                    <div class="flex justify-center mb-4">
+                        ${Array.from({length: 5}, (_, i) => 
+                            `<i class="fas fa-star ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`
+                        ).join('')}
+                    </div>
+                    <p class="text-lg mb-4 italic">"${testimonial.message}"</p>
+                    <h4 class="font-semibold">${testimonial.name}</h4>
+                </div>
+            `).join('');
+
+            // Auto-rotate testimonials
+            setInterval(() => {
+                currentTestimonial = currentTestimonial < testimonials.length - 1 ? currentTestimonial + 1 : 0;
+                updateTestimonialCarousel();
+            }, 5000);
+        }
+
+        // Update testimonial carousel
+        function updateTestimonialCarousel() {
+            const container = document.getElementById('testimonial-container');
+            if (container) {
+                container.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            }
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Search products
+        function searchProducts(query) {
+            const productCards = document.querySelectorAll('.product-card');
+            const searchTerm = query.toLowerCase();
+            
+            productCards.forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                const productDesc = card.querySelector('p').textContent.toLowerCase();
+                
+                if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add to cart
+        async function addToCart(productId) {
+            if (currentRecordCount >= 999) {
+                showToast('Batas maksimum 999 item telah tercapai. Silakan hapus beberapa item terlebih dahulu.', 'error');
+                return;
+            }
+
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.product_id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                if (window.dataSdk) {
+                    showLoading();
+                    const result = await window.dataSdk.update({
+                        ...existingItem,
+                        quantity: existingItem.quantity
+                    });
+                    hideLoading();
+                    
+                    if (result.isOk) {
+                        showToast('Jumlah produk di keranjang diperbarui!', 'success');
+                    } else {
+                        showToast('Gagal memperbarui keranjang', 'error');
+                    }
+                }
+            } else {
+                const cartItem = {
+                    id: `cart_${Date.now()}`,
+                    type: 'cart_item',
+                    product_id: productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                    timestamp: new Date().toISOString()
+                };
+                
+                cart.push(cartItem);
+                
+                if (window.dataSdk) {
+                    showLoading();
+                    const result = await window.dataSdk.create(cartItem);
+                    hideLoading();
+                    
+                    if (result.isOk) {
+                        showToast('Produk ditambahkan ke keranjang!', 'success');
+                    } else {
+                        showToast('Gagal menambahkan ke keranjang', 'error');
+                    }
+                }
+            }
+            
+            updateCartUI();
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            
+            if (cartCount) {
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+            
+            if (cartItems) {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                            <p>${translations[currentLanguage].cart_empty}</p>
+                        </div>
+                    `;
+                } else {
+                    cartItems.innerHTML = cart.map(item => `
+                        <div class="flex items-center space-x-4 p-4 border-b border-gray-200">
+                            <div class="flex-1">
+                                <h4 class="font-semibold">${item.name}</h4>
+                                <p class="text-gray-600">Rp ${item.price.toLocaleString('id-ID')}</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300 transition-colors">-</button>
+                                <span class="w-8 text-center">${item.quantity}</span>
+                                <button onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})" class="bg-gray-200 text-gray-700 w-8 h-8 rounded-full hover:bg-gray-300 transition-colors">+</button>
+                            </div>
+                            <button onclick="removeFromCart('${item.id}')" class="text-red-500 hover:text-red-700 transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            }
+            
+            if (cartTotal) {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            }
+        }
+
+        // Update cart quantity
+        async function updateCartQuantity(itemId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(itemId);
+                return;
+            }
+            
+            const item = cart.find(i => i.id === itemId);
+            if (item) {
+                item.quantity = newQuantity;
+                
+                if (window.dataSdk) {
+                    showLoading();
+                    const result = await window.dataSdk.update(item);
+                    hideLoading();
+                    
+                    if (!result.isOk) {
+                        showToast('Gagal memperbarui jumlah', 'error');
+                    }
+                }
+                
+                updateCartUI();
+            }
+        }
+
+        // Remove from cart
+        async function removeFromCart(itemId) {
+            const itemIndex = cart.findIndex(i => i.id === itemId);
+            if (itemIndex > -1) {
+                const item = cart[itemIndex];
+                cart.splice(itemIndex, 1);
+                
+                if (window.dataSdk) {
+                    showLoading();
+                    const result = await window.dataSdk.delete(item);
+                    hideLoading();
+                    
+                    if (!result.isOk) {
+                        showToast('Gagal menghapus item', 'error');
+                    }
+                }
+                
+                updateCartUI();
+            }
+        }
+
+        // Handle checkout
+        function handleCheckout() {
+            if (cart.length === 0) {
+                showToast('Keranjang kosong', 'error');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const message = `Halo, saya ingin memesan:\n\n${cart.map(item => `${item.name} x${item.quantity} - Rp ${(item.price * item.quantity).toLocaleString('id-ID')}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString('id-ID')}`;
+            
+            const whatsappUrl = `https://wa.me/62085282836?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        // Handle contact form
+        async function handleContactForm(e) {
+            e.preventDefault();
+            
+            if (currentRecordCount >= 999) {
+                showToast('Batas maksimum 999 pesan telah tercapai.', 'error');
+                return;
+            }
+            
+            const formData = new FormData(e.target);
+            const contactData = {
+                id: `contact_${Date.now()}`,
+                type: 'contact',
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                phone: document.getElementById('contact-phone').value,
+                message: document.getElementById('contact-message').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            if (window.dataSdk) {
+                showLoading();
+                const result = await window.dataSdk.create(contactData);
+                hideLoading();
+                
+                if (result.isOk) {
+                    showToast('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.', 'success');
+                    e.target.reset();
+                } else {
+                    showToast('Gagal mengirim pesan. Silakan coba lagi.', 'error');
+                }
+            }
+        }
+
+        // Handle rating form
+        async function handleRatingForm(e) {
+            e.preventDefault();
+            
+            if (currentRecordCount >= 999) {
+                showToast('Batas maksimum 999 penilaian telah tercapai.', 'error');
+                return;
+            }
+            
+            const rating = document.getElementById('rating-value').value;
+            if (rating === '0') {
+                showToast('Silakan berikan rating terlebih dahulu', 'error');
+                return;
+            }
+            
+            const ratingData = {
+                id: `rating_${Date.now()}`,
+                type: 'rating',
+                name: document.getElementById('rating-name').value,
+                email: document.getElementById('rating-email').value,
+                rating: parseInt(rating),
+                message: document.getElementById('rating-message').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            if (window.dataSdk) {
+                showLoading();
+                const result = await window.dataSdk.create(ratingData);
+                hideLoading();
+                
+                if (result.isOk) {
+                    showToast('Terima kasih atas penilaian Anda!', 'success');
+                    e.target.reset();
+                    updateStarRating(0);
+                } else {
+                    showToast('Gagal mengirim penilaian. Silakan coba lagi.', 'error');
+                }
+            }
+        }
+
+        // Update star rating
+        function updateStarRating(rating) {
+            const stars = document.querySelectorAll('.star-rating');
+            const ratingValue = document.getElementById('rating-value');
+            
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('text-gray-300');
+                    star.classList.add('text-yellow-400');
+                } else {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-gray-300');
+                }
+            });
+            
+            if (ratingValue) {
+                ratingValue.value = rating;
+            }
+        }
+
+        // Send chat message
+        function sendChatMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            if (!chatInput || !chatMessages) return;
+            
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'bg-purple-600 text-white p-3 rounded-lg ml-8';
+            userMessage.innerHTML = `<p class="text-sm">${message}</p>`;
+            chatMessages.appendChild(userMessage);
+            
+            // Add bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(message);
+                const botMessage = document.createElement('div');
+                botMessage.className = 'bg-gray-100 p-3 rounded-lg mr-8';
+                botMessage.innerHTML = `<p class="text-sm">${botResponse}</p>`;
+                chatMessages.appendChild(botMessage);
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+            
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Get bot response
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('harga') || lowerMessage.includes('price')) {
+                return 'Harga produk kami mulai dari Rp 75.000 untuk aksesoris hingga Rp 300.000 untuk cardigan premium. Anda bisa melihat detail harga di katalog produk kami.';
+            } else if (lowerMessage.includes('pengiriman') || lowerMessage.includes('ongkir')) {
+                return 'Kami melayani pengiriman ke seluruh Indonesia melalui JNE, J&T, dan SiCepat. Ongkos kirim akan dihitung berdasarkan lokasi tujuan.';
+            } else if (lowerMessage.includes('custom') || lowerMessage.includes('pesan')) {
+                return 'Ya, kami menerima pesanan custom! Waktu pembuatan 7-14 hari kerja. Silakan hubungi kami di WhatsApp untuk diskusi detail desain.';
+            } else if (lowerMessage.includes('bahan') || lowerMessage.includes('material')) {
+                return 'Kami menggunakan benang berkualitas tinggi seperti wool, cotton, dan acrylic premium. Semua produk dibuat dengan tangan oleh pengrajin berpengalaman.';
+            } else if (lowerMessage.includes('cara perawatan') || lowerMessage.includes('cuci')) {
+                return 'Cuci dengan tangan menggunakan air dingin dan deterjen lembut. Jangan diperas, cukup tekan perlahan. Keringkan dengan cara direbahkan di permukaan datar.';
+            } else {
+                return 'Terima kasih atas pertanyaan Anda! Untuk informasi lebih detail, silakan hubungi kami di WhatsApp 085282836 atau Instagram @adindaarana.';
+            }
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                if (darkModeToggle) {
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
+                }
+            } else {
+                body.classList.remove('dark-mode');
+                if (darkModeToggle) {
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon text-gray-600"></i>';
+                }
+            }
+        }
+
+        // Switch language
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('nav a');
+            const navTexts = ['home', 'products', 'about', 'contact', 'faq'];
+            
+            navLinks.forEach((link, index) => {
+                if (navTexts[index] && translations[lang][navTexts[index]]) {
+                    link.textContent = translations[lang][navTexts[index]];
+                }
+            });
+            
+            // Update search placeholder
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.placeholder = translations[lang].search_placeholder;
+            }
+            
+            // Update buttons
+            const addToCartBtns = document.querySelectorAll('[onclick^="addToCart"]');
+            addToCartBtns.forEach(btn => {
+                const icon = btn.querySelector('i');
+                btn.innerHTML = `${icon ? icon.outerHTML + ' ' : ''}${translations[lang].add_to_cart}`;
+            });
+            
+            // Update cart
+            updateCartUI();
+        }
+
+        // Share to social media
+        function shareToSocial(platform) {
+            const url = window.location.href;
+            const text = 'Lihat koleksi rajutan premium di Chart Knitting Store!';
+            
+            let shareUrl = '';
+            
+            switch (platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+                    break;
+                case 'telegram':
+                    shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Setup animations
+        function setupAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Setup counters
+        function setupCounters() {
+            const counters = document.querySelectorAll('[data-counter]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.dataset.counter);
+                        let current = 0;
+                        const increment = target / 100;
+                        
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+                        
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+            });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // Update cart from data
+        function updateCartFromData(cartData) {
+            cart = cartData;
+            updateCartUI();
+        }
+
+        // Show loading
+        function showLoading() {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.classList.remove('hidden');
+            }
+        }
+
+        // Hide loading
+        function hideLoading() {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('hidden');
+            }
+        }
+
+        // Show toast message
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg text-white max-w-sm ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'error' ? 'bg-red-500' : 
+                'bg-blue-500'
+            }`;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99efe7ba5437fce4',t:'MTc2MzIyMTgzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
